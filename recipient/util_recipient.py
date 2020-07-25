@@ -13,8 +13,12 @@ def convert_json_recipient(convert_json: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def list_recipient_json(recipient_list: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    recipient_list = [convert_json_recipient(recipient) for recipient in recipient_list]
+    try:
+        recipient_list = [convert_json_recipient(recipient) for recipient in recipient_list]
+    except:
+        raise
     return recipient_list
 
 
 recipients_url = "https://stepik.org/media/attachments/course/73594/recipients.json"
+

@@ -10,14 +10,21 @@ from .util_recipient import recipients_url, list_recipient_json
 @api_view(http_method_names=['GET'])
 def recipients(request: Request) -> Response:
     try:
-        recipients_list = requests.get(recipients_url, timeout=10).json()
-        recipients_list = list_recipient_json(recipients_list)
+        try:
+            recipients_req = requests.get(recipients_url, timeout=10)
+            if recipients_req.status_code == 404:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+            recipients_list = recipients_req.json()
+        except Exception as ex:
+            return Response([{'name': str(ex.__class__.__name__)}, {'Ошибка': 'Чтения JSON'}])
+        try:
+            recipients_list = list_recipient_json(recipients_list)
+        except Exception as ex:
+            return Response([{'name': str(ex.__class__.__name__)}, {'Ошибка': 'Неожиданная Структура JSON'}])
     except Timeout:
         return Response(status=status.HTTP_408_REQUEST_TIMEOUT)
     if recipients_list:
         return Response(recipients_list)
-    else:
-        return Response(status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view(http_method_names=['GET'])
