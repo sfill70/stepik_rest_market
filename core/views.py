@@ -1,6 +1,6 @@
-"""Декораторы для вьюшек (фукциий и клаасов, ва разных)
+"""Декоратор  для вьюшек фукциий def base_view(fn) и клаасов унаследоваться - class BaseView(View)
    обработчик не отловленных исключений, сведения выводятся в браузер
-   если в сетиднге дебаг=фальш вывода не будет, но не факт"""
+   если в сетиднге дебаг=фальш вывода не будет, но не факт)))"""
 import datetime
 import functools
 import inspect
@@ -30,7 +30,7 @@ def ret(json_object, status=200):
 
 def error_response(exception):
     """Форматирует НТТР ответ с описанием ошибки и Трасебеком"""
-    res = {}
+    res = {"errorMessage": "Shit happens"}
     if DEBUG:
         res = {"errorMessage": str(exception),
                "traceback": traceback.format_exc()}
@@ -39,7 +39,6 @@ def error_response(exception):
 
 def base_view(fn):
     """Декоратор для вьюшк (функций), обрабатывает исключения"""
-
     @functools.wraps(fn)
     def inner(request, *args, **kwargs):
         try:
