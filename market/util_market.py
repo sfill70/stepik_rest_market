@@ -32,5 +32,5 @@ def list_market_json_2(market_list: List[Dict[str, Any]]) -> List[Dict[str, Any]
 
 beauty_url = "https://stepik.org/media/attachments/course/73594/beautyboxes.json"
 food_url = "https://stepik.org/media/attachments/course/73594/foodboxes.json"
-# presents_url = "https://stepik.org/media/attachments/course/73594/presentsboxes.json"
-presents_url = "https://stepik.org/media/attachments/course/735941/presentsboxes.json"
+presents_url = "https://stepik.org/media/attachments/course/73594/presentsboxes.json"
+# presents_url = "https://stepik.org/media/attachments/course/735941/presentsboxes.json"
