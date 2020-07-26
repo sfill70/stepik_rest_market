@@ -15,8 +15,8 @@ def convert_json_recipient(convert_json: Dict[str, Any]) -> Dict[str, Any]:
 def list_recipient_json(recipient_list: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     try:
         recipient_list = [convert_json_recipient(recipient) for recipient in recipient_list]
-    except:
-        raise
+    except Exception as exc:
+        raise exc
     return recipient_list
 
 
