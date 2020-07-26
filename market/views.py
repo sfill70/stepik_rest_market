@@ -5,12 +5,17 @@ from rest_framework import status
 import requests
 from requests.exceptions import Timeout
 from .util_market import beauty_url, food_url, presents_url, list_market_json, list_market_json_2
+from core.views import base_view
 
 
+@base_view
 @api_view(http_method_names=['GET'])
 def market(request: Request) -> Response:
     try:
-        market_list = requests.get(presents_url, timeout=10).json()
+        market_req = requests.get(presents_url, timeout=10)
+        if market_req.status_code == 404:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        market_list = market_req.json()
         market_list = list_market_json_2(market_list)
     except Timeout:
         return Response(status=status.HTTP_408_REQUEST_TIMEOUT)
@@ -33,10 +38,14 @@ def market(request: Request) -> Response:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
 
+@base_view
 @api_view(http_method_names=['GET'])
 def product(request: Request, pk: int) -> Response:
     try:
-        market_list = requests.get(presents_url, timeout=10).json()
+        market_req = requests.get(presents_url, timeout=10)
+        if market_req.status_code == 404:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        market_list = market_req.json()
         market_list = list_market_json(market_list)
     except Timeout:
         return Response(status=status.HTTP_408_REQUEST_TIMEOUT)

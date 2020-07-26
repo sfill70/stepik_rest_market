@@ -20,5 +20,6 @@ def list_recipient_json(recipient_list: List[Dict[str, Any]]) -> List[Dict[str, 
     return recipient_list
 
 
-recipients_url = "https://stepik.org/media/attachments/course/73594/recipients.json"
+# recipients_url = "https://stepik.org/media/attachments/course/73594/recipients.json"
+recipients_url = "https://stepik.org/media/attachments/course/735941/recipients.json"
 

@@ -24,7 +24,9 @@ SECRET_KEY = '^zq#c*wa+hz0bvblkzvfavvtu7c(top72@8^s&guqf=j2r91cc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
+# ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS = []
 
 
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'recipient',
     'market',
+    'core',
 ]
 
 MIDDLEWARE = [
